@@ -1,18 +1,27 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="home">
+        <h1>home</h1>
+        <Button text="save" :isLoading="isLoading" @click="isLoading = !isLoading"/>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Button from '../components/general/Button'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    name: "Home",
+    data() {
+        return {
+            isLoading: false,
+        }
+    },
+    method: {
+
+    },
+    components: {
+        Button
+    }
+};
 </script>
+<style scoped>
+</style>
