@@ -1,5 +1,5 @@
 <template>
-    <button :class="getTheme">
+    <button :class="getTheme" :title="buttonText">
         <p v-show="!isLoading">{{ buttonText }}</p>
         <Loading v-show="isLoading" />
     </button>
@@ -27,7 +27,6 @@ export default {
         getTheme() {
             return this.theme === 'light' ? 'light' : 'dark'
         },
-        
     },
 };
 </script>
@@ -38,16 +37,23 @@ button {
     width: 90px;
     height: 40px;
     border: none;
+    margin: 5px;
 }
 button:hover {
     cursor: pointer;
 }
 .light {
-    background-color: #dbdbdb;
-    color: #000000;
+    background-color: var(--l-background-3);
+    border: 2px solid var(--l-line-1);
+}
+.light:hover {
+    background-color: var(--l-background-4);
 }
 .dark {
-    background-color: #474747;
-    color: #e8eaed;
+    background-color: var(--d-background-3);
+    border: 2px solid var(--d-line-1);
+}
+.dark:hover {
+    background-color: var(--d-background-4);
 }
 </style>

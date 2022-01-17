@@ -2,7 +2,6 @@
     <div>
         <i :class="getTheme"></i>
     </div>
-    
 </template>
 
 <script>
@@ -15,7 +14,9 @@ export default {
     },
     computed: {
         getTheme() {
-            return this.theme === 'light' ? ['fas', 'fa-cog', 'light'] : ['fas', 'fa-cog', 'dark']
+            return this.theme === "light"
+                ? ["fas", "fa-cog", "light"]
+                : ["fas", "fa-cog", "dark"];
         },
     },
 };
@@ -34,10 +35,9 @@ i {
     }
 }
 .light {
-    color: #000000;
+    color: var(--l-text);
 }
 .dark {
-    color: #e8eaed;
+    color: var(--d-text);
 }
-
 </style>
