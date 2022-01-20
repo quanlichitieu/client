@@ -22,7 +22,7 @@
                 <Button text="Save" />
             </div>
         </ModalBox>
-        <!-- <form>
+        <form>
             <Input
                 label="name"
                 type="text"
@@ -45,18 +45,38 @@
                 :required="true"
                 :row="5"
             ></Textarea>
-        </form> -->
+        </form>
         <p>{{ myName }}</p>
-        <a class="link">click here</a>
+        <!-- <p>________________________________________</p>
         <div style="width: 500px; height: 300px">
             <ListSearch
-                :listData="listData"
+                :listData="listData1"
                 @dataUpdated="updateValue"
                 :selected="myName"
                 :disabled="false"
             />
         </div>
-        <!-- <p>1</p>
+        <p>________________________________________</p> -->
+        <div style="width: 600px; height: 450px">
+        <TabBar :tabBarList="tabBarList">
+            <template v-slot:spend>
+                <ListSearch
+                    :listData="listData1"
+                    @dataUpdated="updateValue"
+                    :selected="myName"
+                    :disabled="false"
+                />
+            </template>
+            <template v-slot:income>
+                <ListSearch
+                    :listData="listData2"
+                    @dataUpdated="updateValue"
+                    :selected="myName"
+                    :disabled="false"
+                />
+            </template>
+        </TabBar>
+        </div>
         <p>1</p>
         <p>1</p>
         <p>1</p>
@@ -71,7 +91,8 @@
         <p>1</p>
         <p>1</p>
         <p>1</p>
-        <p>1</p> -->
+        <p>1</p>
+        <p>1</p>
     </div>
 </template>
 
@@ -83,6 +104,7 @@ import Input from "../components/general/Form/Input";
 import Radio from "../components/general/Form/Radio";
 import Textarea from "../components/general/Form/Textarea";
 import ListSearch from "../components/general/Form/ListSearch";
+import TabBar from "../components/general/TabBar";
 
 export default {
     name: "Home",
@@ -90,6 +112,7 @@ export default {
         return {
             isLoading: false,
             myName: "",
+            data: "",
             radioData: [
                 {
                     name: "name1",
@@ -104,7 +127,7 @@ export default {
                     value: "value3",
                 },
             ],
-            listData: [
+            listData1: [
                 "eating & food",
                 "rent",
                 "water",
@@ -129,6 +152,16 @@ export default {
                 "others",
                 "update balance",
             ],
+            listData2: [
+                "salary",
+                "bonus",
+                "award",
+                "be donated",
+                "sell stuff",
+                "others",
+                "update balance",
+            ],
+            tabBarList: ["spend", "income"],
         };
     },
     methods: {
@@ -144,6 +177,7 @@ export default {
         Radio,
         Textarea,
         ListSearch,
+        TabBar,
     },
 };
 </script>

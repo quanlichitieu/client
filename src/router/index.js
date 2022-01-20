@@ -12,6 +12,9 @@ const routes = [
         name: 'About',
         component: () => import('../views/About.vue')
     },
+    {
+        path: '/'
+    }
     // {
     //     path: '/:notFound',
     //     name: 'NotFound',

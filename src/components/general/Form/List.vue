@@ -4,7 +4,7 @@
             v-for="(listElement, index) in listData"
             :key="index"
             :class="'element ' + (selected === listElement ? 'selected' : '')"
-            @click="data = listElement"
+            @click="handleClick(listElement)"
         >
             <p>{{ listElement }}</p>
             <div class="hr" v-if="index !== listData.length - 1"></div>
@@ -18,13 +18,18 @@ export default {
     data() {
         return {
             theme: this.$store.state.general.theme,
-            data: "",
+            data: this.selected,
         };
     },
     props: {
         listData: Array,
         selected: String,
         disabled: Boolean,
+    },
+    methods: {
+        handleClick(value) {
+            this.data = value;
+        },
     },
     computed: {
         getTheme() {
@@ -38,6 +43,11 @@ export default {
                 this.$emit("dataUpdated", this.data + "");
             }
         },
+        selected() {
+            if (this.selected !== this.data) {
+                this.data = this.selected;
+            }
+        }
     },
 };
 </script>

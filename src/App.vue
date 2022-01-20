@@ -5,14 +5,24 @@
             <router-link to="/about">About</router-link>
         </div>
         <router-view />
+        <Alert
+            :isShow="isShowAlert"
+            message="error: no such file or source directory found"
+            @closeAlert="isShowAlert = false"
+        />
     </div>
 </template>
 
 <script>
+import Alert from "./components/general/Alert";
+
+import { USDto, toUSD } from "./utils/moneyConverter.js";
+
 export default {
     data() {
         return {
             theme: this.$store.state.general.theme,
+            isShowAlert: false,
         };
     },
     computed: {
@@ -20,16 +30,18 @@ export default {
             return this.theme === "light" ? "light" : "dark";
         },
     },
-    mounted() {
+    components: {
+        Alert,
+    },
+    created() {
         //local storage setup
         if (localStorage.getItem("theme") !== "dark")
             localStorage.setItem("theme", "light");
-        document.body.style.backgroundColor = localStorage.getItem("theme") === "light" ? "#fff" : "#1a1a1a";
-        // setTimeout(() => {
-        //     this.$store.dispatch('general/setTheme', 'dark');
-        //     this.$store.dispatch('general/setLanguage', 'vn')
-        // }, 2000);
+        document.body.style.backgroundColor =
+            localStorage.getItem("theme") === "light" ? "#fff" : "#1a1a1a";
+        console.log(process.env.VUE_APP_API_URL);
     },
+    mounted() {},
 };
 </script>
 
@@ -78,6 +90,9 @@ p {
     color: var(--d-text);
 }
 h2 {
+    font-family: Garamond, serif;
+}
+h3 {
     font-family: Garamond, serif;
 }
 a.link {
