@@ -1,50 +1,19 @@
 <template>
     <div class="home">
         <h1>home</h1>
-        <Button text="Launch" :isLoading="isLoading" @click="this.isLoading = !this.isLoading" @closeModal="this.isLoading = false"/>
+        <Button
+            text="Launch"
+            :isLoading="isLoading"
+            @click="this.isLoading = !this.isLoading"
+        />
         <p>1</p>
-        <Keyval keyText="name" valText="Nguyen Tung Lam" keyWidth="70px" />
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-        <p>1</p>
-
-        <ModalBox title="Model box" :isShow="isLoading" @closeModal="isLoading = !isLoading" modalWidth="80%">
+        <Keyval keyText="name" valText="Nguyen Tung Lam" />
+        <ModalBox
+            title="Model box"
+            :isShow="isLoading"
+            @closeModal="isLoading = !isLoading"
+            modalWidth="80%"
+        >
             <Keyval keyText="name" valText="Nguyen Tung Lam" />
             <Keyval keyText="age" valText="18" />
             <Keyval keyText="email" valText="abc@gmail.com" />
@@ -53,26 +22,128 @@
                 <Button text="Save" />
             </div>
         </ModalBox>
+        <!-- <form>
+            <Input
+                label="name"
+                type="text"
+                @dataUpdated="updateValue"
+                :disabled="false"
+                :required="true"
+            />
+            <Radio
+                label="label"
+                :radioData="radioData"
+                @dataUpdated="updateValue"
+                :disabled="false"
+                :required="true"
+            />
+            <Keyval keyText="name" valText="Nguyen Tung Lam" />
+            <Textarea
+                label="description"
+                @dataUpdated="updateValue"
+                :disabled="false"
+                :required="true"
+                :row="5"
+            ></Textarea>
+        </form> -->
+        <p>{{ myName }}</p>
+        <a class="link">click here</a>
+        <div style="width: 500px; height: 300px">
+            <ListSearch
+                :listData="listData"
+                @dataUpdated="updateValue"
+                :selected="myName"
+                :disabled="false"
+            />
+        </div>
+        <!-- <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p>
+        <p>1</p> -->
     </div>
 </template>
 
 <script>
 import Button from "../components/general/Button";
 import Keyval from "../components/general/Keyval";
-import ModalBox from "../components/general/ModalBox.vue";
+import ModalBox from "../components/general/ModalBox";
+import Input from "../components/general/Form/Input";
+import Radio from "../components/general/Form/Radio";
+import Textarea from "../components/general/Form/Textarea";
+import ListSearch from "../components/general/Form/ListSearch";
 
 export default {
     name: "Home",
     data() {
         return {
             isLoading: false,
+            myName: "",
+            radioData: [
+                {
+                    name: "name1",
+                    value: "value1",
+                },
+                {
+                    name: "name2",
+                    value: "value2",
+                },
+                {
+                    name: "name3",
+                    value: "value3",
+                },
+            ],
+            listData: [
+                "eating & food",
+                "rent",
+                "water",
+                "gas",
+                "internet",
+                "telephone",
+                "TV",
+                "transportation",
+                "shopping",
+                "friend & partner",
+                "entertainment",
+                "travel",
+                "health",
+                "charity & donations",
+                "gift",
+                "family",
+                "education",
+                "investment",
+                "business",
+                "insurance",
+                "withdraw money",
+                "others",
+                "update balance",
+            ],
         };
     },
-    method: {},
+    methods: {
+        updateValue(value) {
+            this.myName = value;
+        },
+    },
     components: {
         Button,
         Keyval,
         ModalBox,
+        Input,
+        Radio,
+        Textarea,
+        ListSearch,
     },
 };
 </script>

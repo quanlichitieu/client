@@ -48,6 +48,7 @@ button:hover {
 }
 .light:hover {
     background-color: var(--l-background-4);
+    box-shadow: 0px 0px 5px rgba(33,33,33);
 }
 .dark {
     background-color: var(--d-background-3);
@@ -55,5 +56,6 @@ button:hover {
 }
 .dark:hover {
     background-color: var(--d-background-4);
+    box-shadow: 0px 0px 5px rgba(233,233,233);
 }
 </style>

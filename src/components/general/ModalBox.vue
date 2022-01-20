@@ -62,7 +62,7 @@ export default {
 }
 .light.modal-box {
     background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 .dark.modal-box {
     background-color: rgb(255, 255, 255);
@@ -132,7 +132,7 @@ export default {
 }
 .light .modal-content {
     background-color: var(--l-background-2);
-    border: 3px var(--l-line-1) solid;
+    /* border: 3px var(--l-line-1) solid; */
 }
 .light .modal-header h2 {
     color: var(--l-text);
@@ -146,7 +146,7 @@ export default {
 
 .dark .modal-content {
     background-color: var(--d-background-2);
-    border: 3px var(--d-line-1) solid;
+    /* border: 3px var(--d-line-1) solid; */
 }
 .dark .modal-header h2 {
     color: var(--d-text);
@@ -157,4 +157,4 @@ export default {
 .dark .modal-hr {
     color: var(--d-line-2);
 }
-</style>
+</style>    

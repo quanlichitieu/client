@@ -18,7 +18,6 @@ export default {
     props: {
         keyText: String,
         valText: String,
-        keyWidth: String,
     },
     computed: {
         getTheme() {
@@ -38,7 +37,6 @@ p {
     line-height: 35px;
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 18px;
 }
 .key {
     border-top-left-radius: 5px;

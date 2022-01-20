@@ -4,8 +4,8 @@
             <router-link to="/">Home</router-link> |
             <router-link to="/about">About</router-link>
         </div>
-    <router-view />
-    </div> 
+        <router-view />
+    </div>
 </template>
 
 <script>
@@ -13,26 +13,24 @@ export default {
     data() {
         return {
             theme: this.$store.state.general.theme,
-        }
+        };
     },
     computed: {
         getTheme() {
-            return this.theme === 'light' ? 'light' : 'dark'
+            return this.theme === "light" ? "light" : "dark";
         },
-        
     },
     mounted() {
         //local storage setup
-        if (localStorage.getItem('theme') !== 'dark')
-            localStorage.setItem('theme', 'light');
-        if (localStorage.getItem('language') !== 'vn')
-            localStorage.setItem('language', 'en')
+        if (localStorage.getItem("theme") !== "dark")
+            localStorage.setItem("theme", "light");
+        document.body.style.backgroundColor = localStorage.getItem("theme") === "light" ? "#fff" : "#1a1a1a";
         // setTimeout(() => {
         //     this.$store.dispatch('general/setTheme', 'dark');
         //     this.$store.dispatch('general/setLanguage', 'vn')
         // }, 2000);
     },
-}
+};
 </script>
 
 <style>
@@ -42,14 +40,23 @@ export default {
     box-sizing: border-box;
     transition: all 0.3s;
 }
+.light *::selection {
+    background: var(--d-background-1);
+    color: var(--d-text);
+}
+.dark *::selection {
+    background: var(--l-background-1);
+    color: var(--l-text);
+}
 :root {
     --l-background-1: #ffffff;
     --l-background-2: #f7f7f7;
-    --l-background-3: #c9c9c9;
+    --l-background-3: #d9d9d9;
     --l-background-4: #b5b5b5;
     --l-text: #000000;
     --l-line-1: #000000;
     --l-line-2: #3d3d3d;
+    --l-line-3: #696969;
     --d-background-1: #1a1a1a;
     --d-background-2: #202020;
     --d-background-3: #3d3d3d;
@@ -57,19 +64,12 @@ export default {
     --d-text: #e8eaed;
     --d-line-1: #e8eaed;
     --d-line-2: #c4c4c4;
-}
-#main {
-    /* min-width: 1000px; */
-}
-#main.light {
-    background-color: #ffffff;
-}
-#main.dark {
-    background-color: #212121;
+    --d-line-3: #b3b3b3;
+    --text-font-size: 16px;
 }
 p {
-    font-size: 16px;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-size: var(--text-font-size);
+    font-family: "Trebuchet MS", sans-serif;
 }
 .light p {
     color: var(--l-text);
@@ -79,5 +79,44 @@ p {
 }
 h2 {
     font-family: Garamond, serif;
+}
+a.link {
+    font-size: var(--text-font-size);
+    font-family: "Trebuchet MS", sans-serif;
+    color: #4daae0;
+}
+a.link:visited {
+    color: #4daae0;
+}
+a.link:hover {
+    text-shadow: 0 0 2px #4daae0;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+}
+
+.light ::-webkit-scrollbar-thumb {
+    background-color: rgba(200, 200, 200, 0.5);
+}
+.light ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(200, 200, 200, 0.8);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background-color: rgba(61, 61, 61, 0.5);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(61, 61, 61, 0.8);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5);
+}
+body::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(100, 100, 100, 0.8);
 }
 </style>
