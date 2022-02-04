@@ -57,7 +57,7 @@ p {
     padding-left: 10px;
     padding-right: 10px;
     display: inline-block;
-    width: 20%;
+    width: 25%;
     height: 100%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -71,7 +71,7 @@ textarea {
     padding-left: 10px;
     padding-right: 10px;
     float: right;
-    width: 79%;
+    width: calc(75% - 5px);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     overflow-y: hidden;

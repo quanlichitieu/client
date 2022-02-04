@@ -41,7 +41,7 @@ p {
 .key {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    width: 20%;
+    width: 25%;
     height: 100%;
     display: inline-block;
     overflow-y: hidden;
@@ -50,7 +50,7 @@ p {
 .val {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    width: 79%;
+    width: calc(75% - 5px);
     height: 100%;
     float: right;
     overflow-y: hidden;

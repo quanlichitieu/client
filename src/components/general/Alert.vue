@@ -34,7 +34,7 @@ export default {
 }
 .alert h3 {
     color: #fff;
-    font-size: 1.7em;
+    font-size: 1.5em;
     text-align: center;
     line-height: 80px;
     margin: 0;
@@ -44,8 +44,11 @@ export default {
     font-size: 1.5em;
     display: block;
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
+}
+.alert i:hover {
+    cursor: pointer;
 }
 </style>

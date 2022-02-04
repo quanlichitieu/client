@@ -29,6 +29,7 @@
                 @dataUpdated="updateValue"
                 :disabled="false"
                 :required="true"
+                placeholder="Enter your name"
             />
             <Radio
                 label="label"

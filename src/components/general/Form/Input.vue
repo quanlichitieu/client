@@ -7,6 +7,7 @@
             v-model="data"
             :disabled="disabled"
             :required="required"
+            :placeholder="placeholder"
         />
     </label>
 </template>
@@ -26,6 +27,7 @@ export default {
         type: String,
         disabled: Boolean,
         required: Boolean,
+        placeholder: String,
     },
     computed: {
         getTheme() {
@@ -51,7 +53,7 @@ p {
     padding-left: 10px;
     padding-right: 10px;
     display: inline-block;
-    width: 20%;
+    width: 25%;
     height: 100%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -63,7 +65,7 @@ input {
     padding-left: 10px;
     padding-right: 10px;
     float: right;
-    width: 79%;
+    width: calc(75% - 5px);
     height: 100%;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -76,6 +78,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+input::placeholder {
+    font-size: 14px;
+    color: #bbbbbb;
 }
 input[type="number"] {
     -moz-appearance: textfield;

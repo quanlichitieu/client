@@ -1,28 +1,18 @@
 <template>
     <div id="main" :class="getTheme">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
+        <Nav />
         <router-view />
-        <Alert
-            :isShow="isShowAlert"
-            message="error: no such file or source directory found"
-            @closeAlert="isShowAlert = false"
-        />
     </div>
 </template>
 
 <script>
-import Alert from "./components/general/Alert";
-
-import { USDto, toUSD } from "./utils/moneyConverter.js";
+import Nav from "./components/Nav";
+import { routerCheck } from "./helper/routeRedirect";
 
 export default {
     data() {
         return {
             theme: this.$store.state.general.theme,
-            isShowAlert: false,
         };
     },
     computed: {
@@ -31,7 +21,7 @@ export default {
         },
     },
     components: {
-        Alert,
+        Nav,
     },
     created() {
         //local storage setup
@@ -39,9 +29,13 @@ export default {
             localStorage.setItem("theme", "light");
         document.body.style.backgroundColor =
             localStorage.getItem("theme") === "light" ? "#fff" : "#1a1a1a";
-        console.log(process.env.VUE_APP_API_URL);
     },
     mounted() {},
+    watch: {
+        $route(to, from) {
+            routerCheck(to, from);
+        }
+    }
 };
 </script>
 
@@ -52,13 +46,8 @@ export default {
     box-sizing: border-box;
     transition: all 0.3s;
 }
-.light *::selection {
-    background: var(--d-background-1);
-    color: var(--d-text);
-}
-.dark *::selection {
-    background: var(--l-background-1);
-    color: var(--l-text);
+#main {
+    min-width: 800px;
 }
 :root {
     --l-background-1: #ffffff;
@@ -78,15 +67,24 @@ export default {
     --d-line-2: #c4c4c4;
     --d-line-3: #b3b3b3;
     --text-font-size: 16px;
+    --color-theme: #4daae0;
 }
 p {
     font-size: var(--text-font-size);
     font-family: "Trebuchet MS", sans-serif;
 }
+.dark p {
+    color: var(--d-text);
+}
 .light p {
     color: var(--l-text);
 }
-.dark p {
+.dark *::selection {
+    background: var(--l-background-1);
+    color: var(--l-text);
+}
+.light *::selection {
+    background: var(--d-background-1);
     color: var(--d-text);
 }
 h2 {
@@ -98,13 +96,13 @@ h3 {
 a.link {
     font-size: var(--text-font-size);
     font-family: "Trebuchet MS", sans-serif;
-    color: #4daae0;
+    color: var(--color-theme);
 }
 a.link:visited {
-    color: #4daae0;
+    color: var(--color-theme);
 }
 a.link:hover {
-    text-shadow: 0 0 2px #4daae0;
+    text-shadow: 0 0 2px var(--color-theme);
 }
 
 ::-webkit-scrollbar {

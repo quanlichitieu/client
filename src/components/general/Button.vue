@@ -1,5 +1,5 @@
 <template>
-    <button :class="getTheme" :title="buttonText">
+    <button :class="getTheme + (isLoading ? '' : ' effect')" :title="buttonText">
         <p v-show="!isLoading">{{ buttonText }}</p>
         <Loading v-show="isLoading" />
     </button>
@@ -39,14 +39,14 @@ button {
     border: none;
     margin: 5px;
 }
-button:hover {
+button.effect:hover {
     cursor: pointer;
 }
 .light {
     background-color: var(--l-background-3);
     border: 2px solid var(--l-line-1);
 }
-.light:hover {
+.effect.light:hover {
     background-color: var(--l-background-4);
     box-shadow: 0px 0px 5px rgba(33,33,33);
 }
@@ -54,7 +54,7 @@ button:hover {
     background-color: var(--d-background-3);
     border: 2px solid var(--d-line-1);
 }
-.dark:hover {
+.effect.dark:hover {
     background-color: var(--d-background-4);
     box-shadow: 0px 0px 5px rgba(233,233,233);
 }

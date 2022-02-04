@@ -7,6 +7,7 @@ export default {
         setTheme(state, theme) {
             state.theme = theme
             localStorage.setItem('theme', theme)
+            location.reload()
         },
     },
     actions: {

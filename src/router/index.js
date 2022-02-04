@@ -8,18 +8,35 @@ const routes = [
         component: Home
     },
     {
-        path: '/about',
-        name: 'About',
-        component: () => import('../views/About.vue')
+        path: '/login',
+        name: 'Login',
+        component: () => import('../views/authentication/Login')
     },
     {
-        path: '/'
+        path: '/register',
+        name: 'Register',
+        component: () => import('../views/authentication/Register')
+    },
+    {
+        path: '/email-sent',
+        name: 'emailSent',
+        component: () => import('../views/authentication/EmailSent')
+    },
+    {
+        path: '/forgot-password',
+        name: 'forgotPassword',
+        component: () => import('../views/authentication/ForgotPassword')
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: () => import('../views/Dashboard'),
+    },
+    {
+        path: '/:notFound',
+        name: 'NotFound',
+        component: () => import('../views/NotFound.vue')
     }
-    // {
-    //     path: '/:notFound',
-    //     name: 'NotFound',
-    //     component: () => import('../views/NotFound.vue')
-    // }
 ]
 
 const router = createRouter({
