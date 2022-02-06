@@ -33,12 +33,14 @@ export default {
                 console.log(data);
                 if (data.success) {
                     this.$store.dispatch("wallet/setWalletList", data.wallet);
+                    this.loading = false;
                 } else {
                     throw new Error(data.message);
                 }
             })
             .catch((error) => {
                 errorHandler(error);
+                this.loading = false;
             });
     },
 };

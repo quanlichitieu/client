@@ -1,8 +1,11 @@
+import { date } from '../utils/date'
+
 export default {
     namespaced: true,
     state: () => ({
         walletList: [],
         currentWalletID: '',
+        currentYear: date.getFullYear(),
     }),
     mutations: {
         setWalletList(state, list) {

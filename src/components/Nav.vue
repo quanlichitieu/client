@@ -51,7 +51,7 @@ export default {
     },
     computed: {
         getTotalBalance() {
-            return this.$store.state.user.user.totalBalance;
+            return this.$store.getters["wallet/getTotalBalance"]
         },
         notInHideNavRoute() {
             return !this.hideNavRoute.includes(this.$route.path);
