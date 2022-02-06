@@ -14,7 +14,9 @@ export default {
     },
     methods: {
         closeAlert() {
-            this.$emit("closeAlert");
+            this.$store.dispatch("general/setAlert", {
+                status: false,
+            });
         },
     },
 };

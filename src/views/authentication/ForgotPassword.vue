@@ -22,7 +22,10 @@
         <div class="overlay-right">
             <div class="text">
                 <h2>Where are my money ?</h2>
-                <p>qlct, the #1 web app for managing the income and expense for your work and personal use.</p>
+                <p>
+                    qlct, the #1 web app for managing the income and expense for
+                    your work and personal use.
+                </p>
             </div>
             <div class="shape a"></div>
             <div class="shape b"></div>
@@ -32,9 +35,8 @@
             <div class="shape f"></div>
         </div>
         <Alert
-            :message="alertMessage"
-            :isShow="isAlert"
-            @closeAlert="isAlert = false"
+            :message="$store.state.general.alertMessage"
+            :isShow="$store.state.general.showAlert"
         />
     </div>
 </template>
@@ -46,7 +48,13 @@ import sha256 from "sha256";
 import Input from "../../components/general/Form/Input";
 import Button from "../../components/general/Button";
 import Alert from "../../components/general/Alert";
-import { nameValidation, emailValidation, passwordValidation, } from "../../utils/formValidation.js";
+import {
+    nameValidation,
+    emailValidation,
+    passwordValidation,
+} from "../../utils/formValidation.js";
+import { errorHandler } from "../../helper/errorHandler";
+
 export default {
     name: "forgotPassword",
     data: () => ({
@@ -54,8 +62,6 @@ export default {
             email: "",
         },
         isLoading: false,
-        isAlert: false,
-        alertMessage: "",
         error: "",
     }),
     components: {
@@ -77,22 +83,26 @@ export default {
 
             this.error = "";
             this.isLoading = true;
-            
-            axios.post(`${process.env.VUE_APP_API_URL}/api/user/forgotPassword`, {
-                email: this.form.email,
-            }).then(response => {
-                const data = response.data;
-                if (data.success) {
-                    this.$router.push("/email-sent");
-                } else {
-                    throw new Error(data.message);
-                }
-            }).catch((error) => {
-                this.isLoading = false;
-                this.alertMessage =
-                    typeof error.response === "undefined" ? "Something went wrong" : error.response.data.message;
-                this.isAlert = true;
-            });
+
+            axios
+                .post(
+                    `${process.env.VUE_APP_API_URL}/api/user/forgotPassword`,
+                    {
+                        email: this.form.email,
+                    }
+                )
+                .then((response) => {
+                    const data = response.data;
+                    if (data.success) {
+                        this.$router.push("/email-sent");
+                    } else {
+                        throw new Error(data.message);
+                    }
+                })
+                .catch((error) => {
+                    this.isLoading = false;
+                    errorHandler(error)
+                });
         },
     },
     created() {
@@ -107,7 +117,7 @@ export default {
                 }, 5000);
         },
     },
-}
+};
 </script>
 
 <style>

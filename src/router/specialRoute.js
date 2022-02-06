@@ -5,5 +5,7 @@ export const authRoute = [
     '/forgot-password',
 ]
 export const protectedRoute = [
+    '/settings',
+    '/report',
     '/dashboard'
 ]

@@ -33,9 +33,19 @@ const routes = [
         component: () => import('../views/Dashboard'),
     },
     {
+        path: '/report',
+        name: 'Report',
+        component: () => import('../views/Report')
+    },
+    {
+        path: '/settings',
+        name: 'Settings',
+        component: () => import('../views/Settings')
+    },
+    {
         path: '/:notFound',
         name: 'NotFound',
-        component: () => import('../views/NotFound.vue')
+        component: () => import('../views/NotFound')
     }
 ]
 

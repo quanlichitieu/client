@@ -59,24 +59,24 @@
         </div>
         <p>________________________________________</p> -->
         <div style="width: 600px; height: 450px">
-        <TabBar :tabBarList="tabBarList">
-            <template v-slot:spend>
-                <ListSearch
-                    :listData="listData1"
-                    @dataUpdated="updateValue"
-                    :selected="myName"
-                    :disabled="false"
-                />
-            </template>
-            <template v-slot:income>
-                <ListSearch
-                    :listData="listData2"
-                    @dataUpdated="updateValue"
-                    :selected="myName"
-                    :disabled="false"
-                />
-            </template>
-        </TabBar>
+            <TabBar :tabBarList="tabBarList">
+                <template v-slot:spend>
+                    <ListSearch
+                        :listData="listData1"
+                        @dataUpdated="updateValue"
+                        :selected="myName"
+                        :disabled="false"
+                    />
+                </template>
+                <template v-slot:income>
+                    <ListSearch
+                        :listData="listData2"
+                        @dataUpdated="updateValue"
+                        :selected="myName"
+                        :disabled="false"
+                    />
+                </template>
+            </TabBar>
         </div>
         <p>1</p>
         <p>1</p>

@@ -55,9 +55,8 @@
             <div class="shape f"></div>
         </div>
         <Alert
-            :message="alertMessage"
-            :isShow="isAlert"
-            @closeAlert="isAlert = false"
+            :message="$store.state.general.alertMessage"
+            :isShow="$store.state.general.showAlert"
         />
     </div>
 </template>
@@ -74,7 +73,8 @@ import {
     passwordValidation,
 } from "../../utils/formValidation.js";
 
-import { authHandler } from "../../helper/errorHandler.js";
+import { errorHandler } from "../../helper/errorHandler";
+import { apiService } from "../../helper/apiService"
 
 export default {
     name: "Login",
@@ -84,8 +84,6 @@ export default {
             password: "",
         },
         isLoading: false,
-        isAlert: false,
-        alertMessage: "",
         error: "",
     }),
     components: {
@@ -116,8 +114,6 @@ export default {
 
             this.error = "";
             this.isLoading = true;
-
-            console.log(this.form.email + sha256(this.form.password));
             axios
                 .post(`${process.env.VUE_APP_API_URL}/api/user/login`, {
                     email: this.form.email,
@@ -127,19 +123,19 @@ export default {
                     const { data } = res;
                     if (data.success) {
                         localStorage.setItem("accessToken", data.accessToken);
-                        this.$router.push("/dashboard");
                     } else {
                         throw new Error(data.message);
                     }
+                    return apiService("get", "/api/user/info");
+                })
+                .then((data) => {
+                    console.log(data);
+                    this.$store.dispatch("user/setUser", data);
+                    this.$router.push("/dashboard");
                 })
                 .catch((error) => {
-                    authHandler(error.response.status)
+                    errorHandler(error)
                     this.isLoading = false;
-                    this.alertMessage =
-                        typeof error.response === "undefined"
-                            ? "Something went wrong"
-                            : error.response.data.message;
-                    this.isAlert = true;
                 });
         },
     },

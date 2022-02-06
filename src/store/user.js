@@ -1,37 +1,47 @@
 export default {
     namespaced: true,
     state: () => ({
-        userName: '',
-        email: '',
-        totalBalance: 0,
-        currencyUnit: '',
+        user: {
+            userName: '',
+            email: '',
+            totalBalance: 0,
+            currencyUnit: '',
+            createdAt: '',
+            updatedAt: '',
+        }
     }),
     mutations: {
-        setUserName(state, userName) {
-            state.userName = userName
-        },
-        setEmail(state, email) {
-            state.email = email
-        },
-        setTotalBalance(state, totalBalance) {
-            state.totalBalance = totalBalance
-        },
-        setCurrencyUnit(state, currencyUnit) {
-            state.currencyUnit = currencyUnit
+        setUser(state, user) {
+            state.user = user;
         },
     },
     actions: {
         setUserName(state, userName) {
-            state.commit('setUserName', userName)
+            state.commit('setUser', {
+                ...state.user,
+                userName,
+            })
         },
         setEmail(state, email) {
-            state.commit('setEmail', email)
+            state.commit('setUser', {
+                ...state.user,
+                email,
+            })
         },
         setTotalBalance(state, totalBalance) {
-            state.commit('setTotalBalance', totalBalance)
+            state.commit('setUser', {
+                ...state.user,
+                totalBalance,
+            })
         },
         setCurrencyUnit(state, currencyUnit) {
-            state.commit('setCurrencyUnit', currencyUnit)
+            state.commit('setUser', {
+                ...state.user,
+                currencyUnit,
+            })
+        },
+        setUser(state, user) {
+            state.commit('setUser', user);
         },
     },
     getters: {
