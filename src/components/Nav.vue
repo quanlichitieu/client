@@ -10,7 +10,11 @@
         <div class="totalBalance">
             <i class="fas fa-globe"></i>
             <h1>
-                <Money :amount="getTotalBalance" colorDisable />
+                <Money
+                    :amount="getTotalBalance"
+                    :currency="$store.state.user.user.currencyUnit"
+                    colorDisable
+                />
             </h1>
         </div>
         <div class="line"></div>
@@ -51,7 +55,7 @@ export default {
     },
     computed: {
         getTotalBalance() {
-            return this.$store.getters["wallet/getTotalBalance"]
+            return this.$store.getters["wallet/getTotalBalance"];
         },
         notInHideNavRoute() {
             return !this.hideNavRoute.includes(this.$route.path);

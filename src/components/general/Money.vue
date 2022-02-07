@@ -1,8 +1,11 @@
 <template>
-    <span class="money"> {{ getAmount }}{{ getCurrency }} </span>
+    <span class="money"> {{ getAmount }} </span>
 </template>
 
 <script>
+import moneyFormatter from "../../utils/moneyFormatter";
+import { USDto, toUSD } from "../../utils/moneyConverter";
+
 export default {
     name: "Money",
     data() {
@@ -12,22 +15,27 @@ export default {
     },
     props: {
         amount: {
+            //in USD
             type: Number,
             required: true,
         },
         negativeDisable: Boolean,
         colorDisable: Boolean,
+        currency: {
+            type: String,
+            default: "USD",
+        },
     },
     computed: {
-        getCurrency() {
-            return this.$store.state.user.user.currencyUnit;
-        },
         getAmount() {
-            if (!this.negativeDisable)
-                return +this.amount.toFixed(5);
-            else
-                return -this.amount.toFixed(5);
-        }
+            let moneyFormatted = moneyFormatter(
+                USDto(this.currency, this.amount),
+                this.currency
+            );
+            if (this.negativeDisable)
+                moneyFormatted = moneyFormatted.replace("-", "");
+            return moneyFormatted;
+        },
     },
     mounted() {
         const el = this.$el;

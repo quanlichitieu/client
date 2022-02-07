@@ -6,6 +6,7 @@ export default {
         walletList: [],
         currentWalletID: '',
         currentYear: date.getFullYear(),
+        currentMonth: date.getMonth() + 1,
     }),
     mutations: {
         setWalletList(state, list) {
