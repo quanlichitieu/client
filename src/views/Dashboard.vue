@@ -3,7 +3,10 @@
         <LoadingScreen v-if="loading" />
         <div class="content" v-else>
             <div class="column-1">
-                <WalletInfo />
+                <WalletInfo
+                    :tradeList="getTradeByYearAndMonth"
+                    :yearList="getAllYear"
+                />
             </div>
             <div class="column-2">content</div>
         </div>
@@ -34,6 +37,46 @@ export default {
         LoadingScreen,
         Alert,
         WalletInfo,
+    },
+    computed: {
+        getTradeByYear() {
+            return this.tradeList.filter(
+                (trade) =>
+                    parseInt(trade.date.substring(6, 10)) ==
+                    this.$store.state.wallet.currentYear
+            );
+        },
+        getTradeByMonth() {
+            return this.tradeList.filter(
+                (trade) => 
+                    parseInt(trade.date.substring(3, 5)) ==
+                    this.$store.state.wallet.currentMonth
+            );
+        },
+        getTradeByYearAndMonth() {
+            return this.tradeList.filter(
+                (trade) =>
+                    parseInt(trade.date.substring(6, 10)) ==
+                    this.$store.state.wallet.currentYear
+            ).filter(
+                (trade) => 
+                    parseInt(trade.date.substring(3, 5)) ==
+                    this.$store.state.wallet.currentMonth
+            );
+        },
+        getAllYear() {
+            const yearList = [];
+            this.tradeList.map((trade) => {
+                let year = parseInt(trade.date.substring(6, 10));
+                if (!yearList.includes(year)) yearList.push(year);
+            });
+            if (yearList.includes(this.$store.state.wallet.currentYear))
+                yearList.splice(
+                    yearList.indexOf(this.$store.state.wallet.currentYear),
+                    1
+                );
+            return yearList;
+        },
     },
     created() {
         apiService("get", "/api/wallet/getWalletByUser")
@@ -76,12 +119,20 @@ export default {
 }
 .column-1 {
     border: 1px solid red;
-    width: 200px;
+    width: 20%;
     padding: 0 10px 10px 10px;
 }
 .column-2 {
     border: 1px solid blue;
-    width: calc(100% - 200px);
+    width: 80%;
     padding: 0 10px 10px 10px;
+}
+@media screen and (min-width: 1200px) {
+    .column-1 {
+        width: 240px;
+    }
+    .column-2 {
+        width: calc(100% - 240px);
+    }
 }
 </style>

@@ -15,6 +15,12 @@ export default {
         setCurrentWalletID(state, id) {
             state.currentWalletID = id
         },
+        setCurrentYear(state, year) {
+            state.currentYear = year
+        },
+        setCurrentMonth(state, month) {
+            state.currentMonth = month
+        },
     },
     actions: {
         setWalletList(state, walletList) {
@@ -32,6 +38,12 @@ export default {
             }
             state.commit('setCurrentWalletID', currentWalletID)
         },
+        setCurrentYear(state, year) {
+            state.commit('setCurrentYear', year)
+        },
+        setCurrentMonth(state, month) {
+            state.commit('setCurrentMonth', month)
+        },
     },
     getters: {
         getCurrentWallet(state) {
@@ -46,7 +58,8 @@ export default {
                     total += wallet.walletBalance
             })
             return total
-        }
+        },
+
     },
     modules: {
     },

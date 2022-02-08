@@ -45,6 +45,12 @@ p {
 h1, h2, h3, h4, h5, h6 {
     font-family: Garamond, serif;
 }
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: var(--d-text);
+}
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+    color: var(--l-text);
+}
 
 /* selection */
 .dark *::selection {
